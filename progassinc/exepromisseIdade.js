@@ -1,6 +1,6 @@
 const prompt = require('prompt-sync')();
 
-const verificaIdade = (anoNasc, idade) => {
+const verificaIdade = () => {
     return new Promise((resolve, reject) => {
         const anoNascimento = parseInt(prompt('Informe o ano de nascimento: '));
         const idade = parseInt(prompt('Informe a idade: '));
