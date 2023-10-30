@@ -13,53 +13,44 @@ popoverHideFocus.addEventListener('focus', function() {
     }, 2000);
 })
 
-// setar interação visual dos botões
-// função para remover a classe form-general para deixar o display visível
-// const removeclass = (btnId, rowId, classToRemove) => {
-//     if (typeof btnId !== 'string' || typeof rowId !== 'string' || typeof classToRemove !== 'string') {
-//         throw new Error('Todos os parâmetros devem ser strings.');
-//     }
-//     let btnCalled = document.querySelector(btnId);
-//     btnCalled.addEventListener("click", () => {
-//         let rowCalled = document.querySelector(rowId)
-//         rowCalled.classList.remove(classToRemove)
-//     })
-// }
-
-// removeclass("#btnSearch", "#rowSearch", "form-general");
-// removeclass("#btnAdd", "#rowNew", "form-general");
-// removeclass("#btnUp", "#rowUpdate", "form-general");
-// removeclass("#btnCDel", "#rowDelete", "form-general");
-
+// pegando os IDs dos botões e das suas repectivas linhas de manipulação
+let btnAll = ["#btnSearch","#btnAdd","#btnUp","#btnCDel"]
 let rowsAll = ["#rowSearch", "#rowNew", "#rowUpdate", "#rowDelete"]
 
-// const openLayout = (btnId, rowId, classToRemove) => {
-//     if (typeof btnId !== 'string' || typeof rowId !== 'string' || typeof classToRemove !== 'string') {
-//         throw new Error('Todos os parâmetros devem ser strings.');
-//     }
-//     // pega o botão chamado e remove a classe
-//     let btnCalled = document.querySelector(btnId);
-//     let rowCalled = document.querySelector(rowId)
-//     btnCalled.addEventListener("click", () => {
-//         rowCalled.classList.remove(classToRemove)
-//     })
-//     // pega todos os outros botões e adiciona a classe
-//     let rowsAll = ["#rowSearch", "#rowNew", "#rowUpdate", "#rowDelete"]
-//     const removeItem = (array, element) => {
-//         const index = array.indexOf(element);
-//         if (index !== -1) {
-//             array.splice(index, 1);
-//         }
-//     }
-//     removeItem(rowsAll, rowCalled)
-//     console.log(rowsAll);
-//     for(pos in rowsAll){
-//         let row = document.querySelector(rowsAll[pos]);
-//         row.classList.add("form-general")
-//     }
-// }
-
-// openLayout("#btnSearch", "#rowSearch", "form-general");
-// openLayout("#btnAdd", "#rowNew", "form-general");
-// openLayout("#btnUp", "#rowUpdate", "form-general");
-// openLayout("#btnCDel", "#rowDelete", "form-general");
+//função que tirará a classe form-general das linhas conforme o evento de cada botão e adicionará a classe nas outras linhas que não estão sendo usadas
+const openLayout = (rowID) => {
+    let rowCalled = document.querySelector(rowID);
+    rowCalled.classList.remove("form-general")
+    
+    let newRosAll = removeItem(rowsAll, rowID);
+    
+    for(pos in newRosAll){
+        let row = document.querySelector(newRosAll[pos])
+        row.classList.add("form-general")
+    }
+}
+//função para remover item de um array como se fosse um pesquisar, obs.: retorna um array sem o ítem removido
+const removeItem = (array, element) => {
+    const index = array.indexOf(element);
+    if (index !== -1) {
+        array = [...array.slice(0, index), ...array.slice(index + 1)];
+    }
+    return array;
+}
+// atribuindo as funções criadas para o evento click de cada botão
+let btnSearch = document.querySelector(btnAll[0]);
+btnSearch.addEventListener('click', function(){
+    openLayout(rowsAll[0])
+})
+let btnAdd = document.querySelector(btnAll[1]);
+btnAdd.addEventListener('click', function(){
+    openLayout(rowsAll[1])
+})
+let btnUp = document.querySelector(btnAll[2]);
+btnUp.addEventListener('click', function(){
+    openLayout(rowsAll[2])
+})
+let btnCDel = document.querySelector(btnAll[3]);
+btnCDel.addEventListener('click', function(){
+    openLayout(rowsAll[3])
+})
