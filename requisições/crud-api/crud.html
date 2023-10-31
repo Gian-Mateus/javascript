@@ -36,6 +36,25 @@
                 <button class="btn btn-danger w-100" id="btnCDel">Deletar Animals</button>
             </div>
         </div>
+        <!-- Retorno da lista da API -->
+        <div class="row justify-content-center align-items-center g-2 mt-4 text-center form-general" id="rowList">
+            <div class="col">
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Espécie</th>
+                            <th>Cor</th>
+                            <th>Tamanho</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableList">
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <!-- Input de pesquisa -->
         <div class="row justify-content-center align-items-center g-2 mt-4 text-center form-general" id="rowSearch">
             <h4 class="title-form">Pesquisar Animals: </h4>
@@ -49,7 +68,7 @@
                             </div>
                         </div>
                         <div class="col-2">
-                            <button type="submit" class="btn btn-info mt-2" id="btnSearch">🔍</button>
+                            <button type="submit" class="btn btn-info mt-2" id="searchID">🔍</button>
                         </div>
                     </div>
                 </form>
@@ -101,11 +120,19 @@
 
                     <div class="row">
                         <div class="col">
-                            <button type="submit" class="btn btn-outline-success" id="c">Atualizar</button>
+                            <button type="submit" class="btn btn-outline-success" id="btnPut">Atualizar</button>
                         </div>
                     </div>
                 </form>
             </div>
+                <div class="toast align-items-center bg-success position-fixed bottom-0 end-0 p-3" role="alert" aria-live="assertive" aria-atomic="true" id="toastSuccessUpdate">
+                    <div class="d-inline-flex">
+                        <div class="toast-body d-flex gap-0 column-gap-3">
+                            Seu animal foi atualizado!
+                            <button type="button" class="btn-close me-3 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
         </div>
         <!-- Adicionar Animais -->
         <div class="row justify-content-center align-items-center g-2 mt-5 text-center form-general" id="rowNew">
@@ -136,6 +163,14 @@
                     </div>
                 </form>
             </div>
+            <div class="toast align-items-center bg-success position-fixed bottom-0 end-0 p-3" role="alert" aria-live="assertive" aria-atomic="true" id="toastSuccess">
+                <div class="d-inline-flex">
+                    <div class="toast-body d-flex gap-0 column-gap-3">
+                        Seu animal foi adicionado!
+                        <button type="button" class="btn-close me-3 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- Deletar Animal -->
         <div class="row justify-content-center align-items-center g-2 mt-4 text-center form-general" id="rowDelete">
@@ -145,8 +180,8 @@
                     <div class="row">
                         <div class="col-10">
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" name="idSearch" id="idSearch" placeholder="" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-title="Importante:" data-bs-content="Somente números, sem pontos, víruglas ou espaços.">
-                                <label for="idSearch">ID</label>
+                                <input type="number" class="form-control" name="idSearchDelete" id="idSearchDelete" placeholder="" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-title="Importante:" data-bs-content="Somente números, sem pontos, víruglas ou espaços.">
+                                <label for="idSearchDelete">ID</label>
                             </div>
                         </div>
                         <div class="col-2">
@@ -154,6 +189,14 @@
                         </div>
                     </div>
                 </form>
+            </div>
+            <div class="toast align-items-center bg-success position-fixed bottom-0 end-0 p-3" role="alert" aria-live="assertive" aria-atomic="true" id="toastSuccessDelete">
+                <div class="d-inline-flex">
+                    <div class="toast-body d-flex gap-0 column-gap-3">
+                        Seu animal foi deletado!
+                        <button type="button" class="btn-close me-3 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
